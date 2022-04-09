@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="bdd780ec-cbbf-4123-9e86-bd11553da014" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/mySearchEngine/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/mySearchEngine/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mySearchEngine/mygutenberg/management/commands/RefreshJaccardDistance.py" beforeDir="false" afterPath="$PROJECT_DIR$/mySearchEngine/mygutenberg/management/commands/RefreshJaccardDistance.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mySearchEngine/mygutenberg/management/commands/refreshBooksList.py" beforeDir="false" afterPath="$PROJECT_DIR$/mySearchEngine/mygutenberg/management/commands/refreshBooksList.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mySearchEngine/mygutenberg/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/mySearchEngine/mygutenberg/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mySearchEngine/mygutenberg/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mySearchEngine/mygutenberg/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mySearchEngine/text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/mySearchEngine/text.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myTidyVEnv/Scripts/Activate.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/myTidyVEnv/Scripts/Activate.ps1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myTidyVEnv/Scripts/python.exe" beforeDir="false" afterPath="$PROJECT_DIR$/myTidyVEnv/Scripts/python.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myTidyVEnv/Scripts/pythonw.exe" beforeDir="false" afterPath="$PROJECT_DIR$/myTidyVEnv/Scripts/pythonw.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myTidyVEnv/pyvenv.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/myTidyVEnv/pyvenv.cfg" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="26IAvUI9C4KdUXsvhZWuEFq31ML" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bdd780ec-cbbf-4123-9e86-bd11553da014" name="Changes" comment="" />
+      <created>1647100960589</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1647100960589</updated>
+      <workItem from="1647100965236" duration="5000" />
+      <workItem from="1647857927676" duration="596000" />
+      <workItem from="1648643615104" duration="595000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
