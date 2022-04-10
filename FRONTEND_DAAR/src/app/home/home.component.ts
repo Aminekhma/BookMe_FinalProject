@@ -10,6 +10,8 @@ import { BookService } from '../book.service'
 export class HomeComponent implements OnInit {
 
   data: IBook[] = [];
+  dataS: IBook[] = [];
+  suggestions: IBook[] = [];
 
   constructor(public bookservice : BookService) { 
 
@@ -21,18 +23,65 @@ export class HomeComponent implements OnInit {
   getbooks(word){
     // this.bookservice.searchBook(word).then((response) => {
     // }
-
     this.bookservice.searchBook(word).subscribe(res => {
       const obj = JSON.parse(JSON.stringify(res));
-
       this.data = obj.books;
-
-      console.log(this.data)
+      this.dataS = obj.books;
+      this.suggestions = obj.neightboors;
+      console.log(this.suggestions)
        
     },(err)=>{
       alert('failed loading json data');
       console.log(err);
     });
   }
+  numberOfBooks_res(){
+    var e = (<HTMLInputElement>document.getElementById("numberbook_res")).value;
+    if(e != "max"){
+      this.data = this.dataS.slice(0, parseInt(e))
+
+    }else{
+      this.data = this.dataS
+    }
+    (<HTMLInputElement>document.getElementById("numberbook_res")).value = "def"
+
+
+  }
+
+  sortbyOccurence_res(){
+    var e = (<HTMLInputElement>document.getElementById("occ_res")).value;
+
+    if(e == "ON"){
+      this.data.sort((book1, book2) => {
+        if (book1.occurence > book2.occurence ) { return -1; }
+        else if (book1.occurence < book2.occurence ) { return 1; }
+        else { return 0; }
+      });
+    }else{
+      this.data = this.dataS
+    }
+    (<HTMLInputElement>document.getElementById("occ_res")).value = "def"
+
+  }
+
+  sortbyPertinence_res(){
+    var e = (<HTMLInputElement>document.getElementById("pert_res")).value;
+
+    if(e == "ON"){
+      this.data.sort((book1, book2) => {
+        if (book1.crank < book2.crank ) { return -1; }
+        else if (book1.crank > book2.crank ) { return 1; }
+        else { return 0; }
+      });
+
+    }else{
+      this.data = this.dataS
+    }
+    (<HTMLInputElement>document.getElementById("pert_res")).value = "def"
+
+
+  }
+
+
 
 }

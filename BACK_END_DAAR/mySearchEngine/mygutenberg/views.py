@@ -104,27 +104,38 @@ class SearchAPI(APIView):
     def get(self, request,word, format=None):
         res=[]
         books = []
+        books_id = []
         neightbors = []
+        neightbors_final = []
         result_withneightbors = {}
         for book in BookIndex.objects.all():
 
             d = ast.literal_eval(book.wordOcc)
             for key, value in  d.items():
                 if key == word or key == word.lower():
-                    livre = listOFBooks.objects.get(id=book.id)
-                    books += listOFBooks.objects.filter(id=book.id)
-                    
+                    query = listOFBooks.objects.filter(id=book.id) 
+                    query.update(occurence=value)
+                    books_id.append(book.id)
+                    books += query
                     bookJacc = BookGraphJaccard.objects.get(id=book.id)
-                    # res.append(Abook)
                     neightbors += ast.literal_eval(bookJacc.neightbors)
-                    # Abook = {}
-                    
-        # print(neightbors)
-        jsondataBook = listOFBooksSerializer(books, many=True)
-        result_withneightbors["books"] = jsondataBook.data
-        # result_withneightbors["neightboors"] = neightbors
+
+        books_id = set(books_id)
+        neightbors = set(neightbors)
+        neightbors = neightbors - books_id
+        for neigh in neightbors:
+            queryn = listOFBooks.objects.filter(id=neigh)
+            queryn.update(occurence=0)
+            neightbors_final += queryn
+
+        jsondataBook = (listOFBooksSerializer(books, many=True)).data
+        jsondataBookneigh = (listOFBooksSerializer(neightbors_final, many=True)).data
+
+        result_withneightbors["books"] = jsondataBook
+        result_withneightbors["neightboors"] = jsondataBookneigh
         
         return JsonResponse(result_withneightbors, safe=False)
+
 #################################################################################################################################################
 #################################################################################################################################################
 class SearchRegexAPI(APIView):
@@ -140,20 +151,19 @@ class SearchRegexAPI(APIView):
         for book in listOFBooks.objects.all():
             neightbors = []
             result_withneightbors = {}
-            
             f = open("./text.txt", "w", encoding="utf-8")
             f.truncate()
             f.write(book.text)
             f.close()
-            command = ["java", "-jar", "./egrep (1).jar", word,"./text.txt"]
+            command = ["java", "-jar", "./egrep.jar", word,"./text.txt"]
             run_command = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=True)
             result = run_command.stdout
-            # res.append(result)
+            print(result)
             if int(result) >0:
                 bookJacc = BookGraphJaccard.objects.get(id=book.id)
                 res.append(book.title)
                 neightbors += ast.literal_eval(bookJacc.neightbors)
-            # print(len(result))
+                
             result_withneightbors["books"] = res
             result_withneightbors["neightboors"] = neightbors
         

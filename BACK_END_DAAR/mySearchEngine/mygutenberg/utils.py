@@ -47,7 +47,7 @@ def saveTmpWords(wordsOcc):
 #     try: 
 #         return somme/monMax    
 #     except: 
-#         return 0
+#         return 1
 
 
 def distance_jaccard(d1, d2):

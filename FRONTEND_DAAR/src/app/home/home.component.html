@@ -1,25 +1,45 @@
 <body>
-
+<div class="all">
   <div class="container">
     <div class="Searchbox">
       <input class="search" type="text" id="word" name="word" 
-      list="word-list" (change)="getbooks(word.value)" placeholder="Search book..." 
+      list="word-list" (change)="getbooks(word.value)" placeholder="Simple search..." 
       aria-label="Search" #word>
-
       <button class="search-btn" type="submit">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <i class="fa fa-search"></i>
       </button>
-
     </div>
   </div>
-
-
+<br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br>
 
   <div *ngIf="data.length != 0">
     <div class="result">
       <div class="result-book">
         <h2>Resultats</h2>
+        <select id="numberbook_res" (change)="numberOfBooks_res()">
+          <option value="def">--Number of book--</option>
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+          <option value="max">max</option>
+        </select>
+
+        <select id="occ_res" (change)="sortbyOccurence_res()">
+          <option value="def">--Filter by occurence--</option>
+          <option value="ON">ON</option>
+          <option value="OFF">OFF</option>
+        </select>
+
+        <select id="pert_res" (change)="sortbyPertinence_res()">
+          <option value="def" selected>--Filter by pertinence--</option>
+          <option value="ON">ON</option>
+          <option value="OFF">OFF</option>
+        </select>
+
         <hr color="black">
         <br><br><br> 
         <div class="card" *ngFor="let item of data">
@@ -29,6 +49,27 @@
     </div>
   </div>
 
-
+  <div *ngIf="suggestions.length != 0">
+    <div class="result">
+      <div class="result-book">
+        <h2>Suggestions</h2>
+        <select name="numberbook_sugg" id="numberbook_sugg">
+          <option value="">--Number of book--</option>
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+          <option value="max">max</option>
+        </select>
+        <hr color="black">
+        <br><br><br> 
+        <div class="card" *ngFor="let item of suggestions">
+          <app-book [book]=item></app-book>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>

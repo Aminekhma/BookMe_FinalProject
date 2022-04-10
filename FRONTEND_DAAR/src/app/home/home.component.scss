@@ -10,10 +10,7 @@ body{
     background-size: cover;
 }
 .result{
-    position: fixed;
-    display: flex;
     justify-content: center;
-    top: 40%;
     left: 2%;
     right: 2%;
     background-color: rgb(255, 255, 255);  
@@ -40,11 +37,11 @@ body{
     border-radius: 10px;
     border-right:none;
     padding:5px;
-    color: #9dbfaf;
+    color: #000000;
 }
 
 .search:focus{
-    color: #fff;
+    color: rgb(0, 0, 0);
     box-shadow: 0 0 5px #000000;
 }
 

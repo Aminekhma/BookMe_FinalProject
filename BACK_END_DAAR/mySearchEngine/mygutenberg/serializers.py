@@ -5,7 +5,7 @@ from mygutenberg.models import listOFBooks,BookIndex,BookGraphJaccard
 class listOFBooksSerializer(ModelSerializer):
     class Meta:
         model = listOFBooks
-        fields = ('id', 'title','author','language','imageBook','text','crank')
+        fields = ('id', 'title','author','language','imageBook','text','crank','occurence')
 
 class BookIndexSerializer(ModelSerializer):
     class Meta:
