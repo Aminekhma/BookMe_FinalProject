@@ -12,6 +12,8 @@ export class HomeComponent implements OnInit {
   data: IBook[] = [];
   dataS: IBook[] = [];
   suggestions: IBook[] = [];
+  visi = -1 ;
+
 
   constructor(public bookservice : BookService) { 
 
@@ -23,6 +25,9 @@ export class HomeComponent implements OnInit {
   getbooks(word){
     // this.bookservice.searchBook(word).then((response) => {
     // }
+    this.data = []
+    this.suggestions = []
+
     this.bookservice.searchBook(word).subscribe(res => {
       const obj = JSON.parse(JSON.stringify(res));
       this.data = obj.books;
@@ -35,6 +40,37 @@ export class HomeComponent implements OnInit {
       console.log(err);
     });
   }
+
+  handleClick(){
+    var e = (<HTMLInputElement>document.getElementById("toggle_checkbox")).checked;
+    console.log(e)
+    this.data = []
+    this.suggestions = []
+
+    if (e == true){
+      
+      this.visi = 1;
+    } else {
+      this.visi = -1;
+    }
+  }
+
+  getbooksR(regex){
+    // this.bookservice.searchBook(word).then((response) => {
+    // }
+    this.bookservice.searchBookR(regex).subscribe(res => {
+      const obj = JSON.parse(JSON.stringify(res));
+      this.data = obj.books;
+      this.dataS = obj.books;
+      this.suggestions = obj.neightboors;
+      console.log(this.suggestions)
+       
+    },(err)=>{
+      alert('failed loading json data');
+      console.log(err);
+    });
+  }
+
   numberOfBooks_res(){
     var e = (<HTMLInputElement>document.getElementById("numberbook_res")).value;
     if(e != "max"){

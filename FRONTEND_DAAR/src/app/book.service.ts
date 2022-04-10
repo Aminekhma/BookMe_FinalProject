@@ -18,4 +18,8 @@ export class BookService {
     return this.http.get(this.urlApi+"/Search/" + word +"/");
   }
 
+  searchBookR(regex){
+    return this.http.get(this.urlApi+"/RegexSearch/" + regex +"/");
+  }
+
 }

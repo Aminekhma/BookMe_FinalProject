@@ -14,6 +14,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         self.stdout.write('['+time.ctime()+'] Refreshing data...')
+
+        
         
         BookGraphJaccard.objects.all().delete()
         sum_distance = 0

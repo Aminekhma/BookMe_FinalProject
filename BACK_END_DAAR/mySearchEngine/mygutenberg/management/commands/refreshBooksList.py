@@ -16,10 +16,37 @@ class Command(BaseCommand):
         
         listOFBooks.objects.all().delete()
         BookIndex.objects.all().delete()
-
+        test = {
+            ""
+        }
         i = 0
         page = 1
-        map_book_wordOcc = {}
+
+        # serializer = listOFBooksSerializer(data={
+        #                 "id": 9999,
+        #                 "title": "test unitaire",
+        #                 "author": "Amine Kheddar",
+        #                 "language": "fr", 
+        #                 "imageBook": "pas",
+        #                 "text" : "ceci est un test "
+        #         })
+        # if serializer.is_valid():
+        #     serializer.save()
+        #     self.stdout.write(self.style.SUCCESS('['+time.ctime()+'] Successfully added test 1 '))
+
+        # wordsOcc = getWordsWithOcc("test unitaire ceci est un test", "fr")
+
+        # dictOcc = dict(wordsOcc)
+                    
+        # serializerIndex = BookIndexSerializer(data={
+        #                             "id": 9999,
+        #                             "title":"test unitaire",
+        #                             "wordOcc": str(dictOcc)
+        #                         })
+        # if serializerIndex.is_valid():                        
+        #     serializerIndex.save()
+        #     self.stdout.write(self.style.SUCCESS('['+time.ctime()+'] Successfully added test 1 '))
+
 
         while (i <= number_of_book):
                             
