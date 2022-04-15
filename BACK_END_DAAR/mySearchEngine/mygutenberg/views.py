@@ -7,6 +7,7 @@ from django.http import Http404, HttpResponse
 import json
 from subprocess import Popen, PIPE, run,call
 import ast
+import time
 
 from mygutenberg.models import BookIndex,BookGraphJaccard
 from mygutenberg.models import listOFBooks
@@ -108,6 +109,8 @@ class SearchAPI(APIView):
         neightbors = []
         neightbors_final = []
         result_withneightbors = {}
+        start_time = time.time()
+
         for book in BookIndex.objects.all():
 
             d = ast.literal_eval(book.wordOcc)
@@ -133,7 +136,8 @@ class SearchAPI(APIView):
 
         result_withneightbors["books"] = jsondataBook
         result_withneightbors["neightboors"] = jsondataBookneigh
-        
+        print("--- %s seconds ---" % (time.time() - start_time))
+
         return JsonResponse(result_withneightbors, safe=False)
 
 #################################################################################################################################################
@@ -148,7 +152,10 @@ class SearchRegexAPI(APIView):
         
     def get(self, request,word, format=None):
         res=[]
+        cpt=1
         for book in listOFBooks.objects.all():
+            # print(cpt)
+
             neightbors = []
             result_withneightbors = {}
             f = open("./text.txt", "w", encoding="utf-8")
@@ -158,13 +165,30 @@ class SearchRegexAPI(APIView):
             command = ["java", "-jar", "./egrep.jar", word,"./text.txt"]
             run_command = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=True)
             result = run_command.stdout
-            print(result)
+            cpt+=1
             if int(result) >0:
+                query = listOFBooks.objects.filter(id=book.id) 
+                query.update(occurence=int(result))
+                books_id.append(book.id)
+                books += query
                 bookJacc = BookGraphJaccard.objects.get(id=book.id)
-                res.append(book.title)
                 neightbors += ast.literal_eval(bookJacc.neightbors)
-                
-            result_withneightbors["books"] = res
-            result_withneightbors["neightboors"] = neightbors
+
+        books_id = set(books_id)
+        neightbors = set(neightbors)
+        neightbors = neightbors - books_id
+        for neigh in neightbors:
+            queryn = listOFBooks.objects.filter(id=neigh)
+            queryn.update(occurence=0)
+            neightbors_final += queryn
+
+        jsondataBook = (listOFBooksSerializer(books, many=True)).data
+        jsondataBookneigh = (listOFBooksSerializer(neightbors_final, many=True)).data
+
+        result_withneightbors["books"] = jsondataBook
+        result_withneightbors["neightboors"] = jsondataBookneigh
         
         return JsonResponse(result_withneightbors, safe=False)
+    
+    
+               

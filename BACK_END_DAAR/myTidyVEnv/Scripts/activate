@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\Kheddar\Desktop\work\Projet_final_DAAR\tmpDAAR\BACK_END_DAAR\myTidyVEnv"
+VIRTUAL_ENV="C:\Users\khedd\OneDrive\Bureau\Master 2 STL Insta\2eme vague\DAAR\Front\Project\BACK_END_DAAR\myTidyVEnv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

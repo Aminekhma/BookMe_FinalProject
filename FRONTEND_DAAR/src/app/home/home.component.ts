@@ -56,8 +56,7 @@ export class HomeComponent implements OnInit {
   }
 
   getbooksR(regex){
-    // this.bookservice.searchBook(word).then((response) => {
-    // }
+ 
     this.bookservice.searchBookR(regex).subscribe(res => {
       const obj = JSON.parse(JSON.stringify(res));
       this.data = obj.books;
