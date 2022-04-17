@@ -104,8 +104,8 @@ export class HomeComponent implements OnInit {
 
     if(e == "ON"){
       this.data.sort((book1, book2) => {
-        if (book1.crank < book2.crank ) { return -1; }
-        else if (book1.crank > book2.crank ) { return 1; }
+        if (book1.crank > book2.crank ) { return -1; }
+        else if (book1.crank < book2.crank ) { return 1; }
         else { return 0; }
       });
 

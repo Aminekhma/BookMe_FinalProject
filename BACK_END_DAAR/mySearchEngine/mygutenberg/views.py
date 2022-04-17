@@ -114,14 +114,23 @@ class SearchAPI(APIView):
         for book in BookIndex.objects.all():
 
             d = ast.literal_eval(book.wordOcc)
-            for key, value in  d.items():
-                if key == word or key == word.lower():
-                    query = listOFBooks.objects.filter(id=book.id) 
-                    query.update(occurence=value)
-                    books_id.append(book.id)
-                    books += query
-                    bookJacc = BookGraphJaccard.objects.get(id=book.id)
-                    neightbors += ast.literal_eval(bookJacc.neightbors)
+            if word in d :
+                value = d[word]
+                query = listOFBooks.objects.filter(id=book.id) 
+                query.update(occurence=value)
+                books_id.append(book.id)
+                books += query
+                bookJacc = BookGraphJaccard.objects.get(id=book.id)
+                neightbors += ast.literal_eval(bookJacc.neightbors)
+                
+            # if word.lower() in d:
+            #     value = d[word.lower()]
+            #     query = listOFBooks.objects.filter(id=book.id) 
+            #     query.update(occurence=value)
+            #     books_id.append(book.id)
+            #     books += query
+            #     bookJacc = BookGraphJaccard.objects.get(id=book.id)
+            #     neightbors += ast.literal_eval(bookJacc.neightbors)
 
         books_id = set(books_id)
         neightbors = set(neightbors)
@@ -152,6 +161,11 @@ class SearchRegexAPI(APIView):
         
     def get(self, request,word, format=None):
         res=[]
+        books = []
+        books_id = []
+        neightbors = []
+        neightbors_final = []
+        result_withneightbors = {}
         cpt=1
         for book in listOFBooks.objects.all():
             # print(cpt)
